@@ -52,7 +52,7 @@ export default function Info({ records }) {
 
         <Stack direction="row">
           {["a", "b", "c", "d"].map((e) => (
-            <Typography sx={{ width: 0.25 }} fontSize={18}>
+            <Typography key={e} sx={{ width: 0.25 }} fontSize={18}>
               {e.toUpperCase()}: {get_last(e)}
             </Typography>
           ))}

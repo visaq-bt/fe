@@ -16,8 +16,10 @@ export default function Layout() {
   const [dates, set_dates] = useState([]);
   const [records, set_records] = useState({ 0: null, 1: null });
   const [loading, set_loading] = useState(true);
+  const [abcd, set_abcd] = useState({ a: true, b: true, c: true, d: true });
 
   useEffect(() => {
+    document.title = "Visaq";
     axios
       .get(`${process.env.REACT_APP_BE_URL}`)
       .then((data) => set_loading(false))
@@ -50,8 +52,12 @@ export default function Layout() {
           <Stack sx={content} direction="row" spacing={2}>
             <Paper elevation={12} sx={left}>
               <Stack sx={{ height: 1 }} justifyContent="space-between">
-                <Timeline set_dates={set_dates} />
-                <LineChart dates={dates} records={records} />
+                <Timeline
+                  abcd={abcd}
+                  set_abcd={set_abcd}
+                  set_dates={set_dates}
+                />
+                <LineChart abcd={abcd} dates={dates} records={records} />
               </Stack>
             </Paper>
 

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 
-export default function LineChart({ dates, records }) {
+export default function LineChart({ dates, records, abcd }) {
   const datasets = () => {
     let datasets = [];
     for (const key in records) {
@@ -11,9 +11,8 @@ export default function LineChart({ dates, records }) {
       if (record === null) continue;
 
       for (const x of "abcd") {
+        if (!abcd[x]) continue;
         let values = record[x];
-        // console.log(values.length, dates.length);
-        // if (dates.length !== records[0].a.length) values.push(null); // not updated yet today
 
         try {
           const data = values.slice(values.length - dates.length).map((e) => {
@@ -21,12 +20,10 @@ export default function LineChart({ dates, records }) {
             return e;
           });
 
-          const color = get_color(data[0], data[data.length - 1]);
-
           datasets.push({
             label: `${record.origin}:${x}`.toUpperCase(),
-            backgroundColor: color,
-            borderColor: color,
+            backgroundColor: color[`${x}${key}`],
+            borderColor: color[`${x}${key}`],
             data: data,
           });
         } catch (error) {
@@ -45,10 +42,21 @@ export default function LineChart({ dates, records }) {
   return <Line data={data} options={options} />;
 }
 
-function get_color(n1, n2) {
-  //   console.log(n1, n2);
-  if (n2 === null || n1 < n2) return "#da4453"; // red
-  return "#8cc152"; // green
-}
+const color = {
+  a0: "#e9573f",
+  a1: "#fc6e51",
+  b0: "#8cc152",
+  b1: "#a0d468",
+  c0: "#3bafda",
+  c1: "#4fc1e9",
+  d0: "#967adc",
+  d1: "#ac92ec",
+};
 
-const options = {};
+const options = {
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+};

@@ -11,6 +11,8 @@ import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 
+import { get_dates } from "../helper.js";
+
 export default function Top({ records, set_records }) {
   const [origins, set_origins] = useState(["None", "Paris"]);
   const [sortby, set_sortby] = useState(SORTBYS[0]);
@@ -22,6 +24,11 @@ export default function Top({ records, set_records }) {
       axios
         .get(`${process.env.REACT_APP_BE_URL}/origin/${origin}`)
         .then((data) => {
+          const today = new Date();
+          const updated =
+            data.data.a.length ===
+            get_dates(new Date(today.getFullYear(), 0, 1), today).length;
+
           set_records({ ...records, [i]: data.data });
         })
         .catch((err) => {
