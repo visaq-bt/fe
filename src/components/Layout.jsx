@@ -15,6 +15,7 @@ import Typography from "@mui/material/Typography";
 export default function Layout() {
   const [dates, set_dates] = useState([]);
   const [records, set_records] = useState({ 0: null, 1: null });
+  const [loading, set_loading] = useState(true);
 
   useEffect(() => {
     // console.log(records);
@@ -24,23 +25,37 @@ export default function Layout() {
     <Stack sx={container}>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Typography sx={title}>Visaq</Typography>
-        <Typography sx={contact}>Contact Me</Typography>
+        <Typography
+          sx={contact}
+          onClick={() =>
+            window.open(
+              "https://www.linkedin.com/in/brian-tran-b33t34/",
+              "_blank"
+            )
+          }
+        >
+          Contact Me
+        </Typography>
       </Stack>
 
-      <Stack spacing={2}>
-        <Top records={records} set_records={set_records} />
+      {loading ? (
+        <p>loading...</p>
+      ) : (
+        <Stack spacing={2}>
+          <Top records={records} set_records={set_records} />
 
-        <Stack sx={content} direction="row" spacing={2}>
-          <Paper elevation={12} sx={left}>
-            <Stack sx={{ height: 1 }} justifyContent="space-between">
-              <Timeline set_dates={set_dates} />
-              <LineChart dates={dates} records={records} />
-            </Stack>
-          </Paper>
+          <Stack sx={content} direction="row" spacing={2}>
+            <Paper elevation={12} sx={left}>
+              <Stack sx={{ height: 1 }} justifyContent="space-between">
+                <Timeline set_dates={set_dates} />
+                <LineChart dates={dates} records={records} />
+              </Stack>
+            </Paper>
 
-          <Info records={records} />
+            <Info records={records} />
+          </Stack>
         </Stack>
-      </Stack>
+      )}
     </Stack>
   );
 }
@@ -70,4 +85,8 @@ const title = {
 const contact = {
   color: "white",
   fontSize: 20,
+  px: "5px",
+  py: "2px",
+  border: 2,
+  borderRadius: "5px",
 };
