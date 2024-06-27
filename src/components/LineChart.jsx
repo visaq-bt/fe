@@ -15,19 +15,23 @@ export default function LineChart({ dates, records }) {
         // console.log(values.length, dates.length);
         // if (dates.length !== records[0].a.length) values.push(null); // not updated yet today
 
-        const data = values.slice(values.length - dates.length).map((e) => {
-          if (e === -1) return null;
-          return e;
-        });
+        try {
+          const data = values.slice(values.length - dates.length).map((e) => {
+            if (e === -1) return null;
+            return e;
+          });
 
-        const color = get_color(data[0], data[data.length - 1]);
+          const color = get_color(data[0], data[data.length - 1]);
 
-        datasets.push({
-          label: `${record.origin}:${x}`.toUpperCase(),
-          backgroundColor: color,
-          borderColor: color,
-          data: data,
-        });
+          datasets.push({
+            label: `${record.origin}:${x}`.toUpperCase(),
+            backgroundColor: color,
+            borderColor: color,
+            data: data,
+          });
+        } catch (error) {
+          return [];
+        }
       }
     }
 

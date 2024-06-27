@@ -11,7 +11,6 @@ import Typography from "@mui/material/Typography";
 
 export default function Info({ records }) {
   const [page, set_page] = useState(0);
-
   const switch_page = () => set_page((page + 1) % 2);
 
   const record = records[page];
@@ -29,7 +28,15 @@ export default function Info({ records }) {
       </Paper>
     );
 
-  const last_i = record.a.length - 1;
+  const get_last = (e) => {
+    try {
+      const last_i = record.a.length - 1;
+      return record[e][last_i];
+      return 33;
+    } catch (error) {
+      return -1;
+    }
+  };
 
   return (
     <Paper elevation={12} sx={container}>
@@ -44,18 +51,11 @@ export default function Info({ records }) {
         </Stack>
 
         <Stack direction="row">
-          <Typography sx={{ width: 0.25 }} fontSize={18}>
-            A: {record.a[last_i]}
-          </Typography>
-          <Typography sx={{ width: 0.25 }} fontSize={18}>
-            C: {record.c[last_i]}
-          </Typography>
-          <Typography sx={{ width: 0.25 }} fontSize={18}>
-            B: {record.b[last_i]}
-          </Typography>
-          <Typography sx={{ width: 0.25 }} fontSize={18}>
-            D: {record.d[last_i]}
-          </Typography>
+          {["a", "b", "c", "d"].map((e) => (
+            <Typography sx={{ width: 0.25 }} fontSize={18}>
+              {e.toUpperCase()}: {get_last(e)}
+            </Typography>
+          ))}
         </Stack>
 
         <Divider />
