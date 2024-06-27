@@ -18,8 +18,11 @@ export default function Layout() {
   const [loading, set_loading] = useState(true);
 
   useEffect(() => {
-    // console.log(records);
-  }, [records]);
+    axios
+      .get(`${process.env.REACT_APP_BE_URL}`)
+      .then((data) => set_loading(false))
+      .catch((err) => set_loading(true));
+  }, []);
 
   return (
     <Stack sx={container}>
@@ -39,7 +42,7 @@ export default function Layout() {
       </Stack>
 
       {loading ? (
-        <p>loading...</p>
+        <Typography color="white">loading...</Typography>
       ) : (
         <Stack spacing={2}>
           <Top records={records} set_records={set_records} />

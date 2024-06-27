@@ -1,10 +1,7 @@
-import React from "react";
 import { useState, useEffect } from "react";
 
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
-
-import Box from "@mui/material/Box";
 
 export default function LineChart({ dates, records }) {
   const datasets = () => {

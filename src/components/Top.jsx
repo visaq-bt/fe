@@ -22,7 +22,6 @@ export default function Top({ records, set_records }) {
       axios
         .get(`${process.env.REACT_APP_BE_URL}/origin/${origin}`)
         .then((data) => {
-          console.log(data.data);
           set_records({ ...records, [i]: data.data });
         })
         .catch((err) => {
@@ -36,14 +35,7 @@ export default function Top({ records, set_records }) {
       .get(`${process.env.REACT_APP_BE_URL}/origins/${catergory}/${sortby}`)
       .then((data) => set_origins(["None", ...data.data]))
       .catch((err) => console.log(err));
-    // axios
-    //   .get(`${process.env.REACT_APP_BE_URL}/origins/${"Volatility"}`)
-    //   .then((data) => set_origins(["None", ...data.data]))
-    //   .catch((err) => console.log(err));
-    axios
-      .get(`${process.env.REACT_APP_BE_URL}/origin/Paris`)
-      .then((data) => set_records({ ...records, 0: data.data }))
-      .catch((err) => console.log(err));
+    change_record(0, "Paris");
   }, [sortby, catergory]);
 
   return (
