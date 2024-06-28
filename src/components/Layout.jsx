@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
+import { get_dates } from "../helper.js";
 import Top from "./Top.jsx";
 import Timeline from "./Timeline.jsx";
 import LineChart from "./LineChart.jsx";
@@ -20,10 +21,22 @@ export default function Layout() {
 
   useEffect(() => {
     document.title = "Visaq";
+
     axios
-      .get(`${process.env.REACT_APP_BE_URL}`)
-      .then((data) => set_loading(false))
-      .catch((err) => set_loading(true));
+      .get(`${process.env.REACT_APP_BE_URL}/origin/Paris`)
+      .then((data) => {
+        const today = new Date();
+        const updated =
+          data.data.a.length ===
+          get_dates(new Date(today.getFullYear(), 0, 1), today).length;
+
+        set_records({ ...records, [0]: data.data });
+        set_loading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        set_loading(true);
+      });
   }, []);
 
   return (
