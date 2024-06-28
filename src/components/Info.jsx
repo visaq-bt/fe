@@ -59,12 +59,14 @@ export default function Info({ records }) {
 
         <Typography fontSize={18}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet
+          mauris commodo quis. Faucibus nisl tincidunt eget nullam non nisi est
+          sit amet. Quis varius quam quisque id. Tellus integer feugiat
+          scelerisque varius. Bibendum neque egestas congue quisque egestas diam
+          in arcu. Quis varius quam quisque id diam vel. Lobortis scelerisque
+          fermentum dui faucibus in ornare quam. Eget dolor morbi non arcu risus
+          quis varius quam. Eget nunc lobortis mattis aliquam faucibus purus in
+          massa tempor.
         </Typography>
       </Stack>
     </Paper>

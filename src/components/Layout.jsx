@@ -1,9 +1,18 @@
 import { Outlet, Link } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 export default function Layout() {
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BE_URL}`)
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Stack sx={container}>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
