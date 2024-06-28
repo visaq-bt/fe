@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { get_dates } from "../helper.js";
 
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
@@ -49,6 +48,9 @@ export default function Timeline({ set_dates, abcd, set_abcd }) {
 
       case "ytd":
         start = new Date(start.getFullYear(), 0, 1);
+        break;
+
+      default:
         break;
     }
     set_dates(get_dates(start, new Date()));
@@ -111,10 +113,7 @@ export default function Timeline({ set_dates, abcd, set_abcd }) {
   );
 }
 
-const button = { backgroundColor: "", color: "black" };
-const container = {
-  width: 1,
-};
+const container = { width: 1 };
 
 const color = {
   a: "#e9573f",

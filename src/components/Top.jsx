@@ -2,16 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
 
 import Select from "@mui/material/Select";
 
-import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 
-import { get_dates } from "../helper.js";
+// import { get_dates } from "../helper.js";
 
 export default function Top({ records, set_records }) {
   const [origins, set_origins] = useState(["Paris"]);
@@ -24,10 +21,10 @@ export default function Top({ records, set_records }) {
       axios
         .get(`${process.env.REACT_APP_BE_URL}/origin/${origin}`)
         .then((data) => {
-          const today = new Date();
-          const updated =
-            data.data.a.length ===
-            get_dates(new Date(today.getFullYear(), 0, 1), today).length;
+          // const today = new Date();
+          // const updated =
+          //   data.data.a.length ===
+          //   get_dates(new Date(today.getFullYear(), 0, 1), today).length;
 
           set_records({ ...records, [i]: data.data });
         })
@@ -130,7 +127,6 @@ const bottom = {
   height: 20,
   width: 200,
 };
-const btn = {};
 
 const SORTBYS = [
   "high to low volatility",

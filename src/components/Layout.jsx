@@ -1,83 +1,35 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { Outlet, Link } from "react-router-dom";
 
-import { get_dates } from "../helper.js";
-import Top from "./Top.jsx";
-import Timeline from "./Timeline.jsx";
-import LineChart from "./LineChart.jsx";
-import Info from "./Info.jsx";
-
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 export default function Layout() {
-  const [dates, set_dates] = useState([]);
-  const [records, set_records] = useState({ 0: null, 1: null });
-  const [loading, set_loading] = useState(true);
-  const [abcd, set_abcd] = useState({ a: true, b: true, c: true, d: true });
-
-  useEffect(() => {
-    document.title = "Visaq";
-
-    axios
-      .get(`${process.env.REACT_APP_BE_URL}/origin/Paris`)
-      .then((data) => {
-        const today = new Date();
-        const updated =
-          data.data.a.length ===
-          get_dates(new Date(today.getFullYear(), 0, 1), today).length;
-
-        set_records({ ...records, [0]: data.data });
-        set_loading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        set_loading(true);
-      });
-  }, []);
-
   return (
     <Stack sx={container}>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Typography sx={title}>Visaq</Typography>
-        <Typography
-          sx={contact}
-          onClick={() =>
-            window.open(
-              "https://www.linkedin.com/in/brian-tran-b33t34/",
-              "_blank"
-            )
-          }
-        >
-          Contact Me
-        </Typography>
+
+        <Stack direction="row" alignItems="center" spacing={2}>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Typography sx={nav}>Home</Typography>
+          </Link>
+
+          <Link to="/info" style={{ textDecoration: "none" }}>
+            <Typography sx={nav}>Info</Typography>
+          </Link>
+
+          <Link
+            to="https://www.linkedin.com/in/brian-tran-b33t34/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <Typography sx={contact}>Contact Me</Typography>
+          </Link>
+        </Stack>
       </Stack>
 
-      {loading ? (
-        <Typography color="white">loading...</Typography>
-      ) : (
-        <Stack spacing={2}>
-          <Top records={records} set_records={set_records} />
-
-          <Stack sx={content} direction="row" spacing={2}>
-            <Paper elevation={12} sx={left}>
-              <Stack sx={{ height: 1 }} justifyContent="space-between">
-                <Timeline
-                  abcd={abcd}
-                  set_abcd={set_abcd}
-                  set_dates={set_dates}
-                />
-                <LineChart abcd={abcd} dates={dates} records={records} />
-              </Stack>
-            </Paper>
-
-            <Info records={records} />
-          </Stack>
-        </Stack>
-      )}
+      <Outlet />
     </Stack>
   );
 }
@@ -88,20 +40,16 @@ const container = {
   m: "auto",
 };
 
-const content = {
-  width: 1,
-  height: 560,
-};
-
-const left = {
-  width: 0.75,
-  padding: "10px",
-  backgroundColor: "#ede8d0",
-};
-
 const title = {
   color: "white",
   fontSize: 60,
+};
+
+const nav = {
+  color: "white",
+  fontSize: 20,
+  px: "5px",
+  py: "2px",
 };
 
 const contact = {

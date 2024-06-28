@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import Divider from "@mui/material/Divider";
 
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 export default function Info({ records }) {
@@ -32,7 +30,6 @@ export default function Info({ records }) {
     try {
       const last_i = record.a.length - 1;
       return record[e][last_i];
-      return 33;
     } catch (error) {
       return -1;
     }
@@ -76,10 +73,6 @@ export default function Info({ records }) {
 
 const container = {
   width: 0.25,
-  backgroundColor: "#656d78",
   backgroundColor: "#ede8d0",
-
   p: "10px",
 };
-
-const btn = {};
