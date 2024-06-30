@@ -38,7 +38,10 @@ export default function Home() {
   return (
     <>
       {loading ? (
-        <Typography color="white">loading...</Typography>
+        <Typography color="white">
+          Loading. This website uses free hosting, which means this might take a
+          while...
+        </Typography>
       ) : (
         <Stack spacing={2}>
           <Top records={records} set_records={set_records} />
