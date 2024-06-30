@@ -6,6 +6,7 @@ import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 export default function Info({ records }) {
   const [page, set_page] = useState(0);
@@ -37,7 +38,7 @@ export default function Info({ records }) {
 
   return (
     <Paper elevation={12} sx={container}>
-      <Stack spacing={1}>
+      <Stack>
         <Stack
           direction="row"
           alignItems="center"
@@ -47,27 +48,23 @@ export default function Info({ records }) {
           <SwapHorizIcon onClick={switch_page} />
         </Stack>
 
-        <Stack direction="row">
+        <Typography fontSize={20}>{record.country}</Typography>
+
+        <Stack direction="row" spacing={1}>
           {["a", "b", "c", "d"].map((e) => (
-            <Typography key={e} sx={{ width: 0.25 }} fontSize={18}>
+            <Typography
+              key={e}
+              sx={{ backgroundColor: color[e], ...btn }}
+              fontSize={18}
+            >
               {e.toUpperCase()}: {get_last(e)}
             </Typography>
           ))}
         </Stack>
 
-        <Divider />
+        <Divider sx={{ my: 1 }} />
 
-        <Typography fontSize={18}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet
-          mauris commodo quis. Faucibus nisl tincidunt eget nullam non nisi est
-          sit amet. Quis varius quam quisque id. Tellus integer feugiat
-          scelerisque varius. Bibendum neque egestas congue quisque egestas diam
-          in arcu. Quis varius quam quisque id diam vel. Lobortis scelerisque
-          fermentum dui faucibus in ornare quam. Eget dolor morbi non arcu risus
-          quis varius quam. Eget nunc lobortis mattis aliquam faucibus purus in
-          massa tempor.
-        </Typography>
+        <Typography fontSize={18}>{record.description}</Typography>
       </Stack>
     </Paper>
   );
@@ -78,3 +75,12 @@ const container = {
   backgroundColor: "#ede8d0",
   p: "10px",
 };
+
+const color = {
+  a: "#e9573f",
+  b: "#8cc152",
+  c: "#3bafda",
+  d: "#967adc",
+};
+
+const btn = { px: "5px", py: "2px", border: 2, borderRadius: "5px", width: 1 };

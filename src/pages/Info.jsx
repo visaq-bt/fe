@@ -10,7 +10,7 @@ export default function Info() {
       <Typography variant="h4">What is Visaq?</Typography>
       <Typography fontSize={20}>
         Visaq displays information on visa queue times from posts around the
-        world. Data is collected from{" "}
+        world. Number data is collected from{" "}
         <Link
           target="_blank"
           rel="noopener noreferrer"
@@ -19,10 +19,11 @@ export default function Info() {
         >
           US Global Visa Wait Times
         </Link>
-        . If you have any concerns with the accuracy of the data, then please
-        contact me. It is very rudimentary, because I am just one person, and
-        this website is mostly meant to showcase my web develepment skills to
-        prospective employers.
+        . Other description and classification data is ai generated. If you have
+        any concerns with the accuracy of the data, then please contact me. This
+        website is very rudimentary, because I am just one person, and it is
+        mostly meant to showcase my web develepment skills to prospective
+        employers.
       </Typography>
       <br />
       <Typography color="red" variant="h4">
