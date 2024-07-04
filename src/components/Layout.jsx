@@ -28,12 +28,12 @@ export default function Layout() {
           </Link>
 
           <Link
-            to="https://www.linkedin.com/in/brian-tran-b33t34/"
+            to="https://me-pqso.onrender.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none" }}
           >
-            <Typography sx={contact}>Contact Me</Typography>
+            <Typography sx={contact}>About Me</Typography>
           </Link>
         </Stack>
       </Stack>
