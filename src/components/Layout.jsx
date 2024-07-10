@@ -28,7 +28,7 @@ export default function Layout() {
           </Link>
 
           <Link
-            to="https://me-pqso.onrender.com"
+            to="https://b33t34.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none" }}
